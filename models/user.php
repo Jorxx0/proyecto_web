@@ -11,15 +11,16 @@
             $this->db_con = Database::open_connection();
         }
 
-        public function getUser($user, $password)
+        public function getUser($usuario, $password)
         {
-            $stmt = $this->db_con->prepare("SELECT * FROM Usuarios WHERE usuario = :user AND password = :password");
-            $stmt->bindParam(':user', $user);
+            $query = "SELECT * FROM usuarios WHERE usuario = :usuario AND password = :password";
+            $stmt = $this->db_con->prepare($query);
+            $stmt->bindParam(':usuario', $usuario);
             $stmt->bindParam(':password', $password);
-            $stmt->setFetchMode(PDO::FETCH_ASSOC);
             $stmt->execute();
             return $stmt->fetch();
         }
+
     }
 
 ?>

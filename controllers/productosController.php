@@ -3,7 +3,7 @@
  *  Controlador de Productos. Implementará todas las acciones que se puedan llevar a cabo desde las vistas
  * que afecten a productos de la tienda.
  */
-include("views/View.php");
+include_once("views/View.php");
 class ProductController
 {
 

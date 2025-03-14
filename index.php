@@ -1,7 +1,8 @@
 <?php
 
 include_once("views/header.php");
-include("controllers/productosController.php");
+include_once ("controllers/userController.php");
+include_once("controllers/productosController.php");
 
 // Punto de entrada a la aplicación. Si no se recibe parámetro action y controller en la url
 // se muestra la página de inicio (texto HTML).
