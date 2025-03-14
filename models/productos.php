@@ -42,12 +42,13 @@ class ProductoDAO {
      * 
      *  Retorna true si la inserción fue exitosa y false en caso contrario.
      */
-    public function insertProduct($nombre, $descrip, $precio, $proc) {
-        $stmt = $this->db_con->prepare("INSERT INTO Productos (nombre, descripcion, precio, procedencia) VALUES (:nombre, :descripcion, :precio, :procedencia)");
+    public function insertProduct($nombre, $descripcion, $precio, $stock, $img) {
+        $stmt = $this->db_con->prepare("INSERT INTO Productos (NOMBRE, DESCRIPCION, PRECIO, STOCK, IMG) VALUES (:nombre, :descripcion, :precio, :stock, :img)");
         $stmt->bindParam(':nombre', $nombre);
-        $stmt->bindParam(':descripcion', $descrip);
+        $stmt->bindParam(':descripcion', $descripcion);
         $stmt->bindParam(':precio', $precio);
-        $stmt->bindParam(':procedencia', $proc);
+        $stmt->bindParam(':stock', $stock);
+        $stmt->bindParam(':img', $img);
 
         try {
             return $stmt->execute();
@@ -56,5 +57,21 @@ class ProductoDAO {
             return false;
         }
     }
+
+    #############################################################
+
+    public function addProductCarrito($id) {
+        try {
+            $dbh = Database::open_connection();
+            $stmt = $dbh->prepare('SELECT * FROM productos WHERE id_producto = :id');
+            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+            $stmt->setFetchMode(PDO::FETCH_OBJ);
+            $stmt->execute();
+            return $stmt->fetchAll();
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
+
 }
 ?>

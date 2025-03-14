@@ -12,7 +12,7 @@ foreach ($data as $producto) {
     echo "<h5 class='card-title'>" . htmlspecialchars($producto['NOMBRE']) . "</h5>";
     echo "<p class='card-text'><strong>Precio: </strong>" . number_format($producto['PRECIO'], 2) . " €</p>";
     echo '<div class="d-grid">';
-    echo '<button type="button" class="btn btn-primary mb-4" onclick="cesta()">Añadir al carrito</button>';
+    echo '<button type="button" class="btn btn-primary mb-4" data-bs-toggle="modal" data-bs-target="#cesta" onclick="cesta(); aniadirCesta(' . htmlspecialchars($producto['ID']) . ')">Añadir al carrito</button>';
     echo '<button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="showProductDetails(\'' . htmlspecialchars($producto['NOMBRE']) . '\', \'' . htmlspecialchars($producto['DESCRIPCION']) . '\', \'' . htmlspecialchars($producto['STOCK']) . '\', \'' . htmlspecialchars($producto['IMG']) . '\', \'' . number_format($producto['PRECIO'], 2) . '\')">Ver producto</button>';
     echo "</div>";
     echo "</div>";
@@ -22,5 +22,7 @@ foreach ($data as $producto) {
 
 echo "</div>";
 echo "</div>";
+
+print_r($_SESSION);
 
 ?>

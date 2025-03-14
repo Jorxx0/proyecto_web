@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 include_once("views/header.php");
 include_once ("controllers/userController.php");
 include_once("controllers/productosController.php");
@@ -25,6 +27,7 @@ if (isset($_REQUEST['action']) && isset($_REQUEST['controller'])) {
     echo '<a href="index.php?controller=userController&action=iniciarSesion" class="btn btn-secondary me-2">Iniciar Sesión</a>';
     echo '<a href="index.php?controller=ProductController&action=getAllProducts#" class="btn btn-secondary me-2">Listar productos</a>';
     echo '</div>';
+
 
     // Página de entrada: mostrar productos
     //$controller = new ProductController();
