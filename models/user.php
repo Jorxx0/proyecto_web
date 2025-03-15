@@ -11,15 +11,26 @@
             $this->db_con = Database::open_connection();
         }
 
-        public function getUser($usuario, $password)
+        public function iniciarSesion($NOMBRE, $CONTRA)
         {
-            $query = "SELECT * FROM usuarios WHERE usuario = :usuario AND password = :password";
-            $stmt = $this->db_con->prepare($query);
-            $stmt->bindParam(':usuario', $usuario);
-            $stmt->bindParam(':password', $password);
+            $stmt = $this->db_con->prepare("SELECT * FROM usuarios WHERE NOMBRE = :NOMBRE AND CONTRA = :CONTRA");
+            $stmt->bindParam(':NOMBRE', $NOMBRE);
+            $stmt->bindParam(':CONTRA', $CONTRA);
+            $stmt->setFetchMode(PDO::FETCH_ASSOC);
             $stmt->execute();
-            return $stmt->fetch();
+            $result = $stmt->fetch();
+            if ($result) {
+            if (!isset($_SESSION['usuario'])) {
+                $_SESSION['usuario'] = [];
+            }
+            $_SESSION['usuario'] = [
+                'nombre' => $result['NOMBRE'],
+                'rol' => isset($result['rol']) ? $result['rol'] : null
+            ];
+            }
+            return $result;
         }
+        
 
     }
 

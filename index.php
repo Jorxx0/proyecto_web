@@ -3,7 +3,7 @@
 session_start();
 
 include_once("views/header.php");
-include_once ("controllers/userController.php");
+include_once("controllers/userController.php");
 include_once("controllers/productosController.php");
 
 // Punto de entrada a la aplicación. Si no se recibe parámetro action y controller en la url
@@ -19,7 +19,7 @@ if (isset($_REQUEST['action']) && isset($_REQUEST['controller'])) {
     $controller->$act();
 
 } else {
-    
+    // Página de entrada: mostrar productos
     echo '<div class="d-flex justify-content-center mt-4">';
     echo '<h1 class="text-light ">Bienvenido a Computer Tecnology</h1>';
     echo '</div>';
@@ -27,11 +27,6 @@ if (isset($_REQUEST['action']) && isset($_REQUEST['controller'])) {
     echo '<a href="index.php?controller=userController&action=iniciarSesion" class="btn btn-secondary me-2">Iniciar Sesión</a>';
     echo '<a href="index.php?controller=ProductController&action=getAllProducts#" class="btn btn-secondary me-2">Listar productos</a>';
     echo '</div>';
-
-
-    // Página de entrada: mostrar productos
-    //$controller = new ProductController();
-    //$controller->listProduct();
 }
 
 require_once("views/footer.php");
