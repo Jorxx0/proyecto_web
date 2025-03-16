@@ -11,13 +11,18 @@ class UserController {
             $user = $userDAO->iniciarSesion($_POST['NOMBRE'], $_POST['CONTRA']);
 
             if ($user) {
-                // Iniciar sesión y almacenar el rol del NOMBRE
+                // Iniciar sesión y almacenar el rol del usuario
                 if (session_status() == PHP_SESSION_NONE) {
                     session_start();
                 }
-                $_SESSION['NOMBRE'] = $user['NOMBRE'];
-                $_SESSION['rol'] = isset($user['rol']) ? $user['rol'] : null;
-                header("Location: index.php");
+                $_SESSION['usuario'] = $user;
+
+                // Redirigir según el rol del usuario
+                if ($user['ROL'] == 'Admin') {
+                    header("Location: index.php?controller=ProductController&action=addProduct");
+                } else {
+                    header("Location: index.php?controller=ProductController&action=showCarrito");
+                }
                 exit(); // Asegúrate de que el script se detenga después de redirigir
             } else {
                 // Mostrar mensaje de error con SweetAlert
@@ -29,14 +34,14 @@ class UserController {
         }
     }
 
-    public function cerrarSesion() {
-        if (session_status() == PHP_SESSION_NONE) {
-            session_start();
-        }
-        session_unset();
-        session_destroy();
-        header("Location: index.php");
-        exit();
-    }
+    // public function cerrarSesion() {
+    //     if (session_status() == PHP_SESSION_NONE) {
+    //         session_start();
+    //     }
+    //     session_unset();
+    //     session_destroy();
+    //     header("Location: index.php");
+    //     exit();
+    // }
 }
 ?>

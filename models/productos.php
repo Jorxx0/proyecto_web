@@ -17,6 +17,7 @@ class ProductoDAO {
 
     // Método que devuelve un array con todos los productos existentes en la base de datos.
     public function getAllProducts() {
+        // Implementación para obtener todos los productos
         $stmt = $this->db_con->prepare("SELECT * FROM Productos");
         $stmt->setFetchMode(PDO::FETCH_ASSOC);
         $stmt->execute();
@@ -25,7 +26,9 @@ class ProductoDAO {
 
     // Método que devuelve toda la información de un producto dado su id.
     public function getProductById($id) {
-        $stmt = $this->db_con->prepare("SELECT * FROM Productos WHERE id_producto = :id");
+        // Implementación para obtener un producto por su ID
+        // Devuelve un array asociativo con los detalles del producto
+        $stmt = $this->db_con->prepare("SELECT * FROM Productos WHERE ID = :id");
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
         $stmt->setFetchMode(PDO::FETCH_ASSOC);
         $stmt->execute();
@@ -43,6 +46,7 @@ class ProductoDAO {
      *  Retorna true si la inserción fue exitosa y false en caso contrario.
      */
     public function insertProduct($nombre, $descripcion, $precio, $stock, $img) {
+        // Implementación para insertar un producto
         $stmt = $this->db_con->prepare("INSERT INTO Productos (NOMBRE, DESCRIPCION, PRECIO, STOCK, IMG) VALUES (:nombre, :descripcion, :precio, :stock, :img)");
         $stmt->bindParam(':nombre', $nombre);
         $stmt->bindParam(':descripcion', $descripcion);
@@ -63,7 +67,7 @@ class ProductoDAO {
     public function addProductCarrito($id) {
         try {
             $dbh = Database::open_connection();
-            $stmt = $dbh->prepare('SELECT * FROM productos WHERE id_producto = :id');
+            $stmt = $dbh->prepare('SELECT * FROM Productos WHERE ID = :id');
             $stmt->bindParam(':id', $id, PDO::PARAM_INT);
             $stmt->setFetchMode(PDO::FETCH_OBJ);
             $stmt->execute();

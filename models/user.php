@@ -1,6 +1,6 @@
 <?php
 
-    include ('ddbb/conexion.php');
+    include_once ('ddbb/conexion.php');
 
     class UserDAO
     {

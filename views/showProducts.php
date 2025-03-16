@@ -23,7 +23,6 @@ foreach ($data as $producto) {
 echo "</div>";
 echo "</div>";
 
-print_r($_SESSION);
 
 ?>
 

@@ -1,11 +1,3 @@
-<?php
-// Verificar si se debe destruir la sesión antes de enviar cualquier salida
-if (isset($_GET['action']) && $_GET['action'] == 'destruirSesion') {
-    session_destroy();
-    header("Location: index.php?controller=ProductController&action=getAllProducts");
-    exit();
-}
-?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -62,14 +54,14 @@ if (isset($_GET['action']) && $_GET['action'] == 'destruirSesion') {
 
           <!-- BOTONES INICIO -->
           <div class="d-flex">
-            <?php if (isset($_SESSION['usuario']) && is_string($_SESSION['usuario']['nombre'])): ?>
+            <?php if (isset($_SESSION['usuario']) && isset($_SESSION['usuario']['NOMBRE'])): ?>
               <span class="navbar-text text-light me-2">
-                Bienvenido, <?php echo htmlspecialchars($_SESSION['usuario']['nombre']); ?>
+                Bienvenido, <?php echo htmlspecialchars($_SESSION['usuario']['NOMBRE']); ?>
               </span>
-              <a href="index.php?controller=userController&action=cerrarSesion" class="btn btn-secondary me-2">
+              <!-- <a href="index.php?controller=userController&action=cerrarSesion" class="btn btn-secondary me-2">
                 Cerrar Sesión
-              </a>
-              <?php if (isset($_SESSION['usuario']['rol']) && $_SESSION['usuario']['rol'] == 'admin'): ?>
+              </a> -->
+              <?php if (isset($_SESSION['usuario']['ROL']) && $_SESSION['usuario']['ROL'] == 'Admin'): ?>
                 <a href="index.php?controller=ProductController&action=aniadirProduct" class="btn btn-secondary me-2">
                   Añadir productos
                 </a>
@@ -79,7 +71,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'destruirSesion') {
                 Iniciar Sesión
               </a>
             <?php endif; ?>
-            <a href="index.php?controller=ProductosController&action=showCarrito" class="btn btn-secondary">
+            <a href="index.php?controller=ProductController&action=showCarrito" class="btn btn-secondary">
               🛒 Carrito
             </a>
 

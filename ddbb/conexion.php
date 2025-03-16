@@ -1,25 +1,24 @@
 <?php
 
-    class Database {
+class Database {
 
-        public static function open_connection(){
-            try{
+    public static function open_connection(){
+        try{
+            $host = "mariadb";
+            $dbname = "database";
+            $user = "admin";
+            $password = "changepassword";
+        
+            $dsn = "mysql:host=$host;dbname=$dbname";
+            $dbh = new PDO($dsn, $user, $password);
 
-                $host = "mariadb";
-                $dbname = "database";
-                $user = "admin";
-                $password = "changepassword";
-            
-                $dsn = "mysql:host=$host;dbname=$dbname";
-                $dbh = new PDO($dsn, $user, $password);
+            return $dbh;
 
-                return $dbh;
-
-            } catch (PDOException $e) {
-                echo $e->getMessage();
-            }  
-        }
-
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }  
     }
+
+}
 
 ?>

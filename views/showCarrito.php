@@ -1,4 +1,4 @@
-<div class="container mt-4">
+<div class="container mt-4" style="color: white;">
     <h2>Tu Carrito</h2>
 
     <?php if (empty($data)): ?>
@@ -14,27 +14,26 @@
                     <th>Acciones</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody style="color: white;">
                 <?php foreach ($data as $producto): ?>
                     <tr>
-                        <td><?= htmlspecialchars($producto->nombre) ?></td>
-                        <td><?= number_format($producto->precio, 2) ?>€</td>
+                        <td style="color:white;"><?= htmlspecialchars($producto['NOMBRE']) ?></td>
+                        <td style="color:white;"><?= number_format($producto['PRECIO'], 2) ?>€</td>
                     </tr>
                 <?php endforeach; ?>
             </tbody>
         </table>
 
-        <div class="d-flex justify-content-start align-items-center mt-4">
+        <div class="d-flex justify-content-start align-items-center mt-4 mb-5">
 
-            <a href="index.php" class="btn btn-info">Ver Productos</a>
-
+            <a href="index.php?controller=ProductController&action=getAllProducts" class="btn btn-info">Ver Productos</a>
 
             <div class="fw-bold ms-auto">
                 <p>Total: 
                     <?php 
                         $total = 0;
                         foreach ($data as $producto) {
-                            $total += $producto->precio;
+                            $total += $producto['PRECIO'];
                         }
                         echo number_format($total, 2) . "€"; 
                     ?>
@@ -44,7 +43,6 @@
                             <?php unset($_SESSION['mensaje']); ?>
                         </div>
                     <?php endif; ?>
-
                 </p>
             </div>
         </div>

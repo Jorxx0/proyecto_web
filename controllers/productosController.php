@@ -6,6 +6,8 @@
  * que afecten a productos de la tienda.
  */
 include_once("views/View.php");
+include_once("models/productos.php");
+
 class ProductController
 {
 
@@ -26,10 +28,8 @@ class ProductController
      */
     public function getAllProducts()
     {
-        require_once("models/productos.php");
         $pDAO = new ProductoDAO();
         $productos = $pDAO->getAllProducts();
-        $pDAO = null;
         View::show("showProducts", $productos);
     }
 
@@ -51,30 +51,23 @@ class ProductController
             if (!isset($_POST['precio']) || strlen($_POST['precio']) == 0)
                 $errores['precio'] = "El precio no puede estar vacío.";
             if (!isset($_POST['stock']) || strlen($_POST['stock']) == 0)
-            $errores['stock'] = "El stock no puede estar vacío.";
+                $errores['stock'] = "El stock no puede estar vacío.";
             if (!isset($_POST['img']) || strlen($_POST['img']) == 0)
-            $errores['img'] = "El img no puede estar vacío.";
+                $errores['img'] = "El img no puede estar vacío.";
 
             if (empty($errores)) {
-                include("models/productos.php");
+                include_once("models/productos.php");
                 $pDAO = new ProductoDAO();
                 if ($pDAO->insertProduct($_POST['nombre'], $_POST['descripcion'], $_POST['precio'], $_POST['stock'], $_POST['img']))
-                $this->getAllProducts();
-            else {
-                $errores['general'] = "Problemas al insertar";
+                    $this->getAllProducts();
+                else {
+                    $errores['general'] = "Problemas al insertar";
+                    View::show("addProduct", $errores);
+                }
+            } else {
                 View::show("addProduct", $errores);
             }
-        } else
-        View::show("addProduct", $errores);
-    }
-    /**
-     * Si el array está vacío es que no hay errores. Si instancia un ProductoDAO y se trata de insertar
-     * el nuevo producto en la BBDD. 
-     * Si se produce la inserción, se llama al método que muestra todos los productos de la tienda.
-     * Si hay error, se muestra la vista de inserción pasándole el array de errores.
-     */
-        // Si no se pulsó el botón insertar, se muestra la vista con el formulario.
-        else {
+        } else {
             View::show("addProduct", null);
         }
     }
@@ -91,20 +84,21 @@ class ProductController
         $_SESSION['carrito'][] = $id;
 
         // Obtener todos los productos para mostrarlos en la vista showProducts
-        require_once("models/productos.php");
         $pDAO = new ProductoDAO();
         $productos = $pDAO->getAllProducts();
-        $pDAO = null;
-
-        // Mostrar la vista showProducts con los productos actualizados
         View::show('showProducts', $productos);
-        exit();
     }
 
     public function showCarrito() {
         $cesta = [];
         if (isset($_SESSION['carrito']) && !empty($_SESSION['carrito'])) {
-            $cesta = $_SESSION['carrito'];
+            $pDAO = new ProductoDAO();
+            foreach ($_SESSION['carrito'] as $id) {
+                $producto = $pDAO->getProductById($id);
+                if ($producto) {
+                    $cesta[] = $producto;
+                }
+            }
         }
         View::show('showCarrito', $cesta);
     }
