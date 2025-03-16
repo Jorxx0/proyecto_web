@@ -23,11 +23,14 @@ foreach ($data as $producto) {
 echo "</div>";
 echo "</div>";
 
-
 ?>
 
 <script>
-    // Mostrar la ventana modal si el parámetro 'added' está presente en la URL
+    /*
+        Mostrar la ventana modal si el parámetro 'added' está presente en la URL
+        Parámetros: no tiene
+        Retorna: no tiene, muestra una alerta de éxito si el producto ha sido añadido al carrito
+    */
     const urlParams = new URLSearchParams(window.location.search);
     if (urlParams.has('added')) {
         Swal.fire({

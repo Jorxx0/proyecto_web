@@ -2,6 +2,11 @@
 
 class Database {
 
+    /*
+        Abre una conexión a la base de datos
+        Parámetros: no tiene
+        Retorna: objeto PDO con la conexión a la base de datos
+    */
     public static function open_connection(){
         try{
             $host = "mariadb";

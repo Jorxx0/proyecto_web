@@ -4,6 +4,11 @@ include_once("views/View.php");
 
 class UserController {
 
+    /*
+        Inicia sesión del usuario
+        Parámetros: no tiene
+        Retorna: no tiene, redirige a la vista correspondiente según el rol del usuario
+    */
     public function iniciarSesion() {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             require_once("models/user.php");
@@ -34,6 +39,11 @@ class UserController {
         }
     }
 
+    /*
+        Cierra la sesión del usuario
+        Parámetros: no tiene
+        Retorna: no tiene, redirige a la página principal
+    */
     // public function cerrarSesion() {
     //     if (session_status() == PHP_SESSION_NONE) {
     //         session_start();

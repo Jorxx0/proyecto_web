@@ -24,6 +24,11 @@
                         <input class="form-control" type="text" name="nombre" maxlength="50" value=""
                             placeholder="Monitor"><br>
                         <?php
+                        /*
+                            Muestra un mensaje de error si el campo 'nombre' tiene errores de validación
+                            Parámetros: no tiene
+                            Retorna: no tiene, muestra un mensaje de error si existe
+                        */
                         if (isset($data) && isset($data['nombre']))
                             echo "<div class='alert alert-danger'>"
                                 . $data['nombre'] .
@@ -35,6 +40,11 @@
                         <input class="form-control" type="text" name="descripcion"
                             placeholder="Monitor OLED 4k 1080p"><br>
                         <?php
+                        /*
+                            Muestra un mensaje de error si el campo 'descripcion' tiene errores de validación
+                            Parámetros: no tiene
+                            Retorna: no tiene, muestra un mensaje de error si existe
+                        */
                         if (isset($data) && isset($data['descripcion']))
                             echo "<div class='alert alert-danger'>"
                                 . $data['descripcion'] .
@@ -45,6 +55,11 @@
                         <label class="form-label" for="precio">Precio:</label>
                         <input class="form-control" type="text" name="precio" placeholder="150.00"><br>
                         <?php
+                        /*
+                            Muestra un mensaje de error si el campo 'precio' tiene errores de validación
+                            Parámetros: no tiene
+                            Retorna: no tiene, muestra un mensaje de error si existe
+                        */
                         if (isset($data) && isset($data['precio']))
                             echo "<div class='alert alert-danger'>"
                                 . $data['precio'] .
@@ -56,6 +71,11 @@
                         <input class="form-control" type="text" name="stock" maxlength="50" value=""
                             placeholder="3"><br>
                         <?php
+                        /*
+                            Muestra un mensaje de error si el campo 'stock' tiene errores de validación
+                            Parámetros: no tiene
+                            Retorna: no tiene, muestra un mensaje de error si existe
+                        */
                         if (isset($data) && isset($data['stock']))
                             echo "<div class='alert alert-danger'>"
                                 . $data['stock'] .
@@ -67,6 +87,11 @@
                         <input class="form-control" type="text" name="img" maxlength="50" value=""
                             placeholder="monitoroled4k.png"><br>
                         <?php
+                        /*
+                            Muestra un mensaje de error si el campo 'img' tiene errores de validación
+                            Parámetros: no tiene
+                            Retorna: no tiene, muestra un mensaje de error si existe
+                        */
                         if (isset($data) && isset($data['img']))
                             echo "<div class='alert alert-danger'>"
                                 . $data['img'] .
@@ -81,3 +106,4 @@
                 </form>
         </div>
     </div>
+</div>

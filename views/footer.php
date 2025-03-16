@@ -145,18 +145,12 @@
 </footer>
 <!-- FOOTER FIN -->
 
-
-
-
 <script>
-  function cestaantigua() {
-    Swal.fire(
-      'Añadido!',
-      'Producto añadido a la cesta!',
-      'success'
-    )
-  }
-
+  /*
+      Muestra una alerta de éxito cuando se añade un producto a la cesta
+      Parámetros: no tiene
+      Retorna: no tiene, muestra una alerta de éxito
+  */
   function cesta() {
     Swal.fire({
       title: "¡Añadido!",
@@ -170,6 +164,11 @@
     });
   }
 
+  /*
+      Muestra una alerta de éxito cuando se suscribe a la newsletter
+      Parámetros: no tiene
+      Retorna: no tiene, muestra una alerta de éxito
+  */
   function subscrito() {
     Swal.fire({
       title: "¡Subscrito!",
@@ -183,10 +182,16 @@
     });
   }
 
-
-</script>
-
-<script>
+  /*
+      Muestra los detalles del producto en un modal
+      Parámetros: 
+          nombre, nombre del producto
+          descripcion, descripción del producto
+          stock, stock del producto
+          img, imagen del producto
+          precio, precio del producto
+      Retorna: no tiene, muestra los detalles del producto en un modal
+  */
   function showProductDetails(nombre, descripcion, stock, img, precio) {
     document.getElementById('modalProductName').innerText = nombre;
     document.getElementById('modalProductDescription').innerText = descripcion;
@@ -229,13 +234,13 @@
 <!-- JAVASCRIPT BOOTSTRAP -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
   integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
-  </script>
+</script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
   integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous">
-  </script>
+</script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
   integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous">
-  </script>
+</script>
 </body>
 
 </html>

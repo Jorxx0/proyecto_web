@@ -1,3 +1,7 @@
+<!--
+    Vista para mostrar el carrito de compras. Contiene el código HTML para mostrar los productos en el carrito
+    así como el código PHP para calcular el total y mostrar mensajes de error o éxito, en caso de existir.
+-->
 <div class="container mt-4" style="color: white;">
     <h2>Tu Carrito</h2>
 
@@ -31,6 +35,11 @@
             <div class="fw-bold ms-auto">
                 <p>Total: 
                     <?php 
+                        /*
+                            Calcula el total de los productos en el carrito
+                            Parámetros: no tiene
+                            Retorna: no tiene, muestra el total calculado
+                        */
                         $total = 0;
                         foreach ($data as $producto) {
                             $total += $producto['PRECIO'];

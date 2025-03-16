@@ -15,7 +15,11 @@ class ProductoDAO {
         $this->db_con = Database::open_connection();
     }
 
-    // Método que devuelve un array con todos los productos existentes en la base de datos.
+    /*
+        Devuelve un array con todos los productos existentes en la base de datos.
+        Parámetros: no tiene
+        Retorna: array asociativo con los productos
+    */
     public function getAllProducts() {
         // Implementación para obtener todos los productos
         $stmt = $this->db_con->prepare("SELECT * FROM Productos");
@@ -24,10 +28,14 @@ class ProductoDAO {
         return $stmt->fetchAll();
     }
 
-    // Método que devuelve toda la información de un producto dado su id.
+    /*
+        Devuelve toda la información de un producto dado su id.
+        Parámetros: 
+            $id, id del producto
+        Retorna: array asociativo con los detalles del producto
+    */
     public function getProductById($id) {
         // Implementación para obtener un producto por su ID
-        // Devuelve un array asociativo con los detalles del producto
         $stmt = $this->db_con->prepare("SELECT * FROM Productos WHERE ID = :id");
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
         $stmt->setFetchMode(PDO::FETCH_ASSOC);
@@ -35,16 +43,16 @@ class ProductoDAO {
         return $stmt->fetch();
     }
 
-    // Insertar un producto en la base de datos.
-    /**
-     * Parámetros: 
-     *  $nombre, nombre del producto.
-     *  $descrip, descripción del producto.
-     *  $precio, precio del producto.
-     *  $proc, procedencia del producto.
-     * 
-     *  Retorna true si la inserción fue exitosa y false en caso contrario.
-     */
+    /*
+        Inserta un producto en la base de datos.
+        Parámetros: 
+            $nombre, nombre del producto.
+            $descripcion, descripción del producto.
+            $precio, precio del producto.
+            $stock, stock del producto.
+            $img, imagen del producto.
+        Retorna: true si la inserción fue exitosa y false en caso contrario.
+    */
     public function insertProduct($nombre, $descripcion, $precio, $stock, $img) {
         // Implementación para insertar un producto
         $stmt = $this->db_con->prepare("INSERT INTO Productos (NOMBRE, DESCRIPCION, PRECIO, STOCK, IMG) VALUES (:nombre, :descripcion, :precio, :stock, :img)");
@@ -64,6 +72,12 @@ class ProductoDAO {
 
     #############################################################
 
+    /*
+        Añade un producto al carrito.
+        Parámetros: 
+            $id, id del producto
+        Retorna: array con los detalles del producto añadido al carrito
+    */
     public function addProductCarrito($id) {
         try {
             $dbh = Database::open_connection();

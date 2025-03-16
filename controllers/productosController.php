@@ -13,6 +13,8 @@ class ProductController
 
     /**
      * Método que obtiene todos los productos de la BBDD y los muestra a través de la vista listaProductos.
+     * Parámetros: no tiene
+     * Retorna: no tiene, muestra la vista listaProductos con los productos
      */
     public function listProduct()
     {
@@ -25,6 +27,8 @@ class ProductController
 
     /**
      * Método que obtiene todos los productos de la BBDD y los muestra a través de la vista showProducts.
+     * Parámetros: no tiene
+     * Retorna: no tiene, muestra la vista showProducts con los productos
      */
     public function getAllProducts()
     {
@@ -36,6 +40,8 @@ class ProductController
     /**
      * Método que añade un producto a la BBDD recogiendo los datos que llegan a través de $_POST. Previo
      * a la inserción realiza la validación de los datos.
+     * Parámetros: no tiene
+     * Retorna: no tiene, muestra la vista addProduct con los errores o la vista showProducts con los productos
      */
     public function aniadirProduct()
     {
@@ -73,6 +79,11 @@ class ProductController
     }
 
     #############################################################
+    /**
+     * Método que añade un producto al carrito.
+     * Parámetros: no tiene
+     * Retorna: no tiene, muestra la vista showProducts con los productos
+     */
     public function aniadirCesta() {
         $id = $_GET['id']; // Obtener el ID del producto desde la URL
 
@@ -89,6 +100,11 @@ class ProductController
         View::show('showProducts', $productos);
     }
 
+    /**
+     * Método que muestra el carrito con los productos añadidos.
+     * Parámetros: no tiene
+     * Retorna: no tiene, muestra la vista showCarrito con los productos del carrito
+     */
     public function showCarrito() {
         $cesta = [];
         if (isset($_SESSION['carrito']) && !empty($_SESSION['carrito'])) {
