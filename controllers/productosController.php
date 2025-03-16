@@ -80,23 +80,28 @@ class ProductController
     }
 
     #############################################################
-    public function aniadirCesta($id) {
+    public function aniadirCesta() {
+        $id = $_GET['id']; // Obtener el ID del producto desde la URL
+
         if (!isset($_SESSION['carrito'])) {
             $_SESSION['carrito'] = [];
         }
 
-        #$productDAO = new ProductoDAO();
-        #$producto_carrito = $productDAO->addProductCarrito($id);
+        // Añadir el producto al carrito sin verificar si ya está presente
+        $_SESSION['carrito'][] = $id;
 
+        // Obtener todos los productos para mostrarlos en la vista showProducts
+        require_once("models/productos.php");
+        $pDAO = new ProductoDAO();
+        $productos = $pDAO->getAllProducts();
+        $pDAO = null;
 
-        if (!in_array($id, $_SESSION['carrito'])) {
-            $_SESSION['carrito'][] = $id;
-        }    
-
-        View::show('showProducts');
+        // Mostrar la vista showProducts con los productos actualizados
+        View::show('showProducts', $productos);
         exit();
     }
-public function showCarrito() {
+
+    public function showCarrito() {
         $cesta = [];
         if (isset($_SESSION['carrito']) && !empty($_SESSION['carrito'])) {
             $cesta = $_SESSION['carrito'];

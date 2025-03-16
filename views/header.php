@@ -1,3 +1,11 @@
+<?php
+// Verificar si se debe destruir la sesión antes de enviar cualquier salida
+if (isset($_GET['action']) && $_GET['action'] == 'destruirSesion') {
+    session_destroy();
+    header("Location: index.php?controller=ProductController&action=getAllProducts");
+    exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -17,6 +25,8 @@
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
     integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous">
   </script>
+  <!-- Incluir SweetAlert2 -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body>
@@ -69,7 +79,7 @@
                 Iniciar Sesión
               </a>
             <?php endif; ?>
-            <a href="index.php?controller=ProductosController&action=aniadirCesta" class="btn btn-secondary">
+            <a href="index.php?controller=ProductosController&action=showCarrito" class="btn btn-secondary">
               🛒 Carrito
             </a>
 
@@ -79,6 +89,7 @@
         </div>
       </div>
     </nav>
+
     <!-- BARRA SUPERIOR FIN -->
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"

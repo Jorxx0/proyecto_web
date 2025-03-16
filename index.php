@@ -25,7 +25,7 @@ if (isset($_REQUEST['action']) && isset($_REQUEST['controller'])) {
     echo '</div>';
     echo '<div class="d-flex justify-content-center mt-5 mb-5">';
     echo '<a href="index.php?controller=userController&action=iniciarSesion" class="btn btn-secondary me-2">Iniciar Sesión</a>';
-    echo '<a href="index.php?controller=ProductController&action=getAllProducts#" class="btn btn-secondary me-2">Listar productos</a>';
+    echo '<a href="index.php?controller=ProductController&action=getAllProducts" class="btn btn-secondary me-2">Listar productos</a>';
     echo '</div>';
 }
 
